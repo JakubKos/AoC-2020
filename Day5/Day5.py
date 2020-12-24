@@ -18,6 +18,7 @@ def decode_position(seat: str, row: bool):
 
 def acquire_seats(input_filepath: str):
     seats = []
+
     with open(input_filepath, 'r') as file:
         for line in file:
             row = decode_position(line[0:7], True)
@@ -29,10 +30,10 @@ def acquire_seats(input_filepath: str):
 
 def part1(input_filepath: str):
     highest_id = -sys.maxsize
+
     for _, _, seat_id in acquire_seats(input_filepath):
         if seat_id > highest_id:
             highest_id = seat_id
-
     return highest_id
 
 
