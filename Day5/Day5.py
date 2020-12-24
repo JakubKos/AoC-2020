@@ -24,14 +24,14 @@ def acquire_seats(input_filepath: str):
             row = decode_position(line[0:7], True)
             column = decode_position(line[7:], False)
             seat_id = row * 8 + column
-            seats.append((row, column, seat_id))
+            seats.append(seat_id)
     return seats
 
 
 def part1(input_filepath: str):
     highest_id = -sys.maxsize
 
-    for _, _, seat_id in acquire_seats(input_filepath):
+    for seat_id in acquire_seats(input_filepath):
         if seat_id > highest_id:
             highest_id = seat_id
     return highest_id
@@ -39,9 +39,9 @@ def part1(input_filepath: str):
 
 def part2(input_filepath: str):
     seats = sorted(acquire_seats(input_filepath))
-    expected_position = seats[0][2]
+    expected_position = seats[0]
 
-    for _, _, seat_id in seats:
+    for seat_id in seats:
         if expected_position != seat_id:
             return expected_position
         expected_position += 1
